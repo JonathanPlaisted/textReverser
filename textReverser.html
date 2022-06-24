@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Reverser</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      background: linear-gradient(to bottom, #202020, #111119);
+      color: rgb(215, 215, 215);
+      width: 100vw;
+      height: 100vh;
+    "
+  >
+    <div
+      class="container"
+      style="display: flex; flex-direction: column; justify-content: center"
+    >
+      <p style="margin-left: 10px">
+        This is the <b>Text Reverser:</b> <br /><br />
+        Enter any <b>text</b>, <b>numbers</b>, or <b>special characters</b>
+        <br />
+        into the text field and be amazed as your text <br />
+        is returned to you... IN REVERSE ORDER! <br />
+        <sub>(Input must be between 2 and 300 characters)</sub>
+      </p>
+      <div
+        class="content"
+        style="text-align: center; align-items: center; margin-top: 15vh"
+      >
+        <h1>Text Reverser</h1>
+        <form
+          name="myForm"
+          onsubmit="validateForm()"
+          method="post"
+          style="margin-bottom: 20px"
+        >
+          <textarea
+            type="text"
+            id="inputString"
+            maxlength="300"
+            placeholder="Enter some text here..."
+            rows="6"
+            cols="30"
+          ></textarea>
+          <div class="container">
+            <input type="reset" id="reset" onclick="resetText()" />
+            <input id="submit" type="submit" />
+          </div>
+        </form>
+        <output form="myForm" id="reversedOutput" for="inputString">
+          <p>
+            Your text will appear here, <br />
+            but backwards...
+          </p>
+        </output>
+      </div>
+    </div>
+    <script>
+      /* 
+          This program takes a string from the user as input,
+          reverses the order of the string, and then returns the string to the user.
+          - Jonathan Plaisted 
+      */
+
+      function validateForm() {
+        let x = document.forms["myForm"]["inputString"].value;
+        if (x == "") {
+          alert("Text area cannot be blank");
+        } else if (x.length <= 1) {
+          alert("Text area must be longer than one character");
+        } else {
+          reverseString(inputString.value);
+        }
+        event.preventDefault();
+      }
+
+      reverseString = (string) => {
+        let reversedString = "";
+        for (let i = string.length - 1; i >= 0; i--) {
+          reversedString += string[i];
+        }
+        document.getElementById("reversedOutput").innerHTML = reversedString;
+      };
+
+      resetText = () => {
+        document.getElementById("reversedOutput").innerHTML =
+          "Your text will appear here, <br /> but backwards...";
+      };
+    </script>
+  </body>
+</html>
